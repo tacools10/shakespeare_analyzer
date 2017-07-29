@@ -2,6 +2,10 @@ require "spec_helper"
 require 'shakespeare_analyzer'
 require 'nokogiri'
 
+# create a test xml using Nokogiri and run both instance methods to test results"
+# this was my first time writing tests in ruby but with more time I would have used :let or :before to
+# get rid of the repetitive code setting up the test xml both times.
+
 RSpec.describe ShakespeareAnalyzer do
   context ".get_speakers"
     it "takes all unique elements for a given node" do

@@ -13,6 +13,8 @@ class ShakespeareAnalyzer
   attr_reader :url, :totals, :speakers
   attr_accessor :xml_doc
 
+  # get all unique speakers from the given xml file
+
   def get_speakers(xml_doc)
      xml_doc.xpath("//SPEECH/SPEAKER").each do |speaker|
        if @speakers.length == 0 || !@speakers.include?("#{speaker.text}")
@@ -21,6 +23,9 @@ class ShakespeareAnalyzer
      end
      return @speakers
   end
+
+  # for each speaker, get the xml line nodes by matching on the speaker name and then count, excluding "ALL"
+  # return a sorted array of the totals after sorting the hash and reversing it to create descending order
 
   def parse_count_sort(speakers, xml_doc)
     speakers.each do |character|
@@ -37,8 +42,4 @@ class ShakespeareAnalyzer
   end
 
 end
-
-example = ShakespeareAnalyzer.new("http://www.ibiblio.org/xml/examples/shakespeare/macbeth.xml")
-
-values = example.parse_count_sort(example.get_speakers(example.xml_doc), example.xml_doc)
 
