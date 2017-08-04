@@ -3,17 +3,21 @@ require 'open-uri'
 
 class ShakespeareAnalyzer
 
-  def initialize(url)
-    @url = url
+  def initialize(attributes = {})
+    @url = attributes[:url]
     @totals = Hash.new
     @speakers = Array.new
-    @xml_doc = Nokogiri::XML(open(url))
+    @xml_doc ||= attributes[:xml_doc]
   end
 
   attr_reader :url, :totals, :speakers
   attr_accessor :xml_doc
 
   # get all unique speakers from the given xml file
+
+  def set_xml(url)
+    @xml_doc = Nokogiri::XML(open(url))
+  end
 
   def get_speakers(xml_doc)
      xml_doc.xpath("//SPEECH/SPEAKER").each do |speaker|

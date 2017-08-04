@@ -2,7 +2,9 @@ require_relative 'shakespeare_analyzer'
 
 # create an instance of the class and store it.
 
-example = ShakespeareAnalyzer.new("http://www.ibiblio.org/xml/examples/shakespeare/macbeth.xml")
+example = ShakespeareAnalyzer.new({:url => "http://www.ibiblio.org/xml/examples/shakespeare/macbeth.xml"})
+
+example.set_xml(example.url)
 
 # store the results
 

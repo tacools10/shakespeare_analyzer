@@ -9,7 +9,7 @@ require 'nokogiri'
 RSpec.describe ShakespeareAnalyzer do
   context ".get_speakers"
     it "takes all unique elements for a given node" do
-      test_analyzer = ShakespeareAnalyzer.new("http://www.ibiblio.org/xml/examples/shakespeare/macbeth.xml")
+      test_analyzer = ShakespeareAnalyzer.new()
       builder = Nokogiri::XML::Builder.new do |xml|
         xml.root {
           xml.SPEECH {
@@ -30,7 +30,7 @@ RSpec.describe ShakespeareAnalyzer do
 
   context ".parse_count_sort"
     it "returns a sorted hash of lines for each character" do
-      test_analyzer = ShakespeareAnalyzer.new("http://www.ibiblio.org/xml/examples/shakespeare/macbeth.xml")
+      test_analyzer = ShakespeareAnalyzer.new()
       speakers = ["MACBETH", "DUNCAN"]
       builder = Nokogiri::XML::Builder.new do |xml|
         xml.root {
