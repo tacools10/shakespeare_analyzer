@@ -23,8 +23,8 @@ class ShakespeareAnalyzer
   def get_speakers()
      nodes = @xml_doc.xpath("//SPEECH/SPEAKER")
      speakers = Array.new
-     nodes.to_a.uniq.each { |node| speakers << node.text }
-     return speakers
+     unique_speakers = nodes.map(&:text).uniq
+     return unique_speakers
   end
 
   # for each speaker, get the xml line nodes by matching on the speaker name and then count, excluding "ALL"
@@ -39,7 +39,6 @@ class ShakespeareAnalyzer
         totals["#{character}"] = count
       end
     end
-
     return totals.sort_by { |char, count| count}.reverse
   end
 
